@@ -1,0 +1,31 @@
+C:\Users\For work\Desktop\Server Lab\Week04\RaiseEventTestPlugin\RaiseEventTestPlugin\bin\Debug\RaiseEventTestPlugin.dll
+C:\Users\For work\Desktop\Server Lab\Week04\RaiseEventTestPlugin\RaiseEventTestPlugin\bin\Debug\RaiseEventTestPlugin.pdb
+C:\Users\For work\Desktop\Server Lab\Week04\RaiseEventTestPlugin\RaiseEventTestPlugin\bin\Debug\ExitGamesLibs.dll
+C:\Users\For work\Desktop\Server Lab\Week04\RaiseEventTestPlugin\RaiseEventTestPlugin\bin\Debug\MySql.Data.dll
+C:\Users\For work\Desktop\Server Lab\Week04\RaiseEventTestPlugin\RaiseEventTestPlugin\bin\Debug\Photon.SocketServer.dll
+C:\Users\For work\Desktop\Server Lab\Week04\RaiseEventTestPlugin\RaiseEventTestPlugin\bin\Debug\PhotonHivePlugin.dll
+C:\Users\For work\Desktop\Server Lab\Week04\RaiseEventTestPlugin\RaiseEventTestPlugin\bin\Debug\Google.Protobuf.dll
+C:\Users\For work\Desktop\Server Lab\Week04\RaiseEventTestPlugin\RaiseEventTestPlugin\bin\Debug\ExitGamesLibs.pdb
+C:\Users\For work\Desktop\Server Lab\Week04\RaiseEventTestPlugin\RaiseEventTestPlugin\bin\Debug\ExitGamesLibs.xml
+C:\Users\For work\Desktop\Server Lab\Week04\RaiseEventTestPlugin\RaiseEventTestPlugin\bin\Debug\MySql.Data.xml
+C:\Users\For work\Desktop\Server Lab\Week04\RaiseEventTestPlugin\RaiseEventTestPlugin\bin\Debug\Photon.SocketServer.pdb
+C:\Users\For work\Desktop\Server Lab\Week04\RaiseEventTestPlugin\RaiseEventTestPlugin\bin\Debug\Photon.SocketServer.xml
+C:\Users\For work\Desktop\Server Lab\Week04\RaiseEventTestPlugin\RaiseEventTestPlugin\obj\Debug\RaiseEventTestPlugin.dll
+C:\Users\For work\Desktop\Server Lab\Week04\RaiseEventTestPlugin\RaiseEventTestPlugin\obj\Debug\RaiseEventTestPlugin.pdb
+C:\Users\For work\Desktop\Server Lab\Week04\RaiseEventTestPlugin\RaiseEventTestPlugin\obj\Debug\RaiseEventTestPlugin.csprojResolveAssemblyReference.cache
+C:\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Plugins\FirstPhotonPlugin\RaiseEventTestPlugin\0.1\bin\RaiseEventTestPlugin.dll
+C:\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Plugins\FirstPhotonPlugin\RaiseEventTestPlugin\0.1\bin\RaiseEventTestPlugin.pdb
+C:\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Plugins\FirstPhotonPlugin\RaiseEventTestPlugin\0.1\bin\ExitGamesLibs.dll
+C:\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Plugins\FirstPhotonPlugin\RaiseEventTestPlugin\0.1\bin\MySql.Data.dll
+C:\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Plugins\FirstPhotonPlugin\RaiseEventTestPlugin\0.1\bin\Photon.SocketServer.dll
+C:\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Plugins\FirstPhotonPlugin\RaiseEventTestPlugin\0.1\bin\PhotonHivePlugin.dll
+C:\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Plugins\FirstPhotonPlugin\RaiseEventTestPlugin\0.1\bin\Google.Protobuf.dll
+C:\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Plugins\FirstPhotonPlugin\RaiseEventTestPlugin\0.1\bin\ExitGamesLibs.pdb
+C:\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Plugins\FirstPhotonPlugin\RaiseEventTestPlugin\0.1\bin\ExitGamesLibs.xml
+C:\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Plugins\FirstPhotonPlugin\RaiseEventTestPlugin\0.1\bin\MySql.Data.xml
+C:\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Plugins\FirstPhotonPlugin\RaiseEventTestPlugin\0.1\bin\Photon.SocketServer.pdb
+C:\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Plugins\FirstPhotonPlugin\RaiseEventTestPlugin\0.1\bin\Photon.SocketServer.xml
+C:\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Plugins\FirstPhotonPlugin\RaiseEventTestPlugin\obj\Debug\RaiseEventTestPlugin.dll
+C:\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Plugins\FirstPhotonPlugin\RaiseEventTestPlugin\obj\Debug\RaiseEventTestPlugin.pdb
+C:\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Plugins\FirstPhotonPlugin\0.1\bin\RaiseEventTestPlugin.dll
+C:\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Plugins\FirstPhotonPlugin\0.1\bin\RaiseEventTestPlugin.pdb
