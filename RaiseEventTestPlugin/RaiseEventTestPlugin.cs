@@ -48,6 +48,7 @@ namespace TestPlugin
 
         public override void OnRaiseEvent(IRaiseEventCallInfo info)
         {
+            string ReturnMessage = "";
             try
             {
                 base.OnRaiseEvent(info);
@@ -58,12 +59,12 @@ namespace TestPlugin
                 return;
             }
 
+            // Login System
             if (info.Request.EvCode == 1)
             {
                 RecvdMessage = Encoding.Default.GetString((byte[])info.Request.Data);
                 string playerName = GetStringDataFromMessage("PlayerName");
                 string playerPassword = GetStringDataFromMessage("Password");
-                string ReturnMessage = "";
 
                 string search_sql = "SELECT name, password FROM photon.users WHERE name = '" + playerName + "'";
                 MySqlCommand cmd = new MySqlCommand(search_sql, conn);
@@ -90,7 +91,9 @@ namespace TestPlugin
                         // playerPassword match with the password in database - worked
                         else
                         {
+                            rdr.Close();
                             ReturnMessage = playerName + " - LoginResult=OK";
+                            break;
                         }
                     }
                 }
@@ -105,14 +108,71 @@ namespace TestPlugin
 
                     ReturnMessage = playerName + " - LoginResult=NewUser";
                 }
-               
-                this.PluginHost.BroadcastEvent(target: ReciverGroup.All,
-                    senderActor: 0,
-                    targetGroup: 0,
-                    data: new Dictionary<byte, object>() { { (byte)245, ReturnMessage } },
-                    evCode: info.Request.EvCode,
-                    cacheOp: 0);
             }
+            // Read position from DB
+            else if (info.Request.EvCode == 2)
+            {
+                RecvdMessage = Encoding.Default.GetString((byte[])info.Request.Data);
+                string playerName = GetStringDataFromMessage("PlayerName");
+
+                string search_sql = "SELECT name, X, Y, Z FROM users WHERE name = '" + playerName + "'";
+                MySqlCommand cmd = new MySqlCommand(search_sql, conn);
+                MySqlDataReader rdr = cmd.ExecuteReader();
+
+                if (rdr.HasRows)
+                {
+                    while (rdr.Read())
+                    {
+                        // all x,y,z are not null, send the value from DB to client
+                        if (!DBNull.Value.Equals(rdr[1]) && !DBNull.Value.Equals(rdr[2]) && !DBNull.Value.Equals(rdr[3]))
+                        {
+                            ReturnMessage = playerName + " - Result=NotNull, - X=" + rdr[1].ToString() +
+                                ", Y=" + rdr[2].ToString() + ", Z=" + rdr[3].ToString();
+
+                            // Close Select Operation
+                            rdr.Close();
+
+                            // Need to break since already Close reader, can no longer access reader.Read()
+                            break;
+                        }
+                        // one/all of x,y,z is/are null, tell client to load default position instead
+                        else
+                        {
+                            rdr.Close();
+                            ReturnMessage = playerName + " - Result=Null";
+                            break;
+                        }
+                    }
+                }
+                // playerName does not exist in database
+                else
+                {
+                    // Close Select Operation
+                    rdr.Close();
+                }
+            }
+            // Update position in DB
+            else if(info.Request.EvCode == 3)
+            {
+                RecvdMessage = Encoding.Default.GetString((byte[])info.Request.Data);
+                string playerName = GetStringDataFromMessage("PlayerName");
+                string playerX = GetStringDataFromMessage("X");
+                string playerY = GetStringDataFromMessage("Y");
+                string playerZ = GetStringDataFromMessage("Z");
+                
+                string update_sql = "UPDATE users SET X = '" + playerX + "', Y = '" + playerY + "', Z = '" + playerZ + "' WHERE name = '" + playerName + "'";
+                MySqlCommand cmd = new MySqlCommand(update_sql, conn);
+                cmd.ExecuteNonQuery();
+
+                ReturnMessage = playerName + " - Result=PositionUpdated";
+                
+            }
+            this.PluginHost.BroadcastEvent(target: ReciverGroup.All,
+                senderActor: 0,
+                targetGroup: 0,
+                data: new Dictionary<byte, object>() { { (byte)245, ReturnMessage } },
+                evCode: info.Request.EvCode,
+                cacheOp: 0);
         }
 
         public string GetStringDataFromMessage(string dataTitle)
