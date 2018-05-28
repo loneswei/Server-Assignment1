@@ -167,6 +167,17 @@ namespace TestPlugin
                 ReturnMessage = playerName + " - Result=PositionUpdated";
                 
             }
+            else if(info.Request.EvCode == 4)
+            {
+                RecvdMessage = Encoding.Default.GetString((byte[])info.Request.Data);
+                string playerName = GetStringDataFromMessage("PlayerName");
+                string playerX = GetStringDataFromMessage("X");
+                string playerY = GetStringDataFromMessage("Y");
+                string playerZ = GetStringDataFromMessage("Z");
+
+                ReturnMessage = "Player=" + playerName + " attacked at position (" + playerX + ',' + playerY + ',' + playerZ + ')';
+            }
+
             this.PluginHost.BroadcastEvent(target: ReciverGroup.All,
                 senderActor: 0,
                 targetGroup: 0,
