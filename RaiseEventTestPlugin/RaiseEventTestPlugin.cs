@@ -175,7 +175,7 @@ namespace TestPlugin
                 string playerY = GetStringDataFromMessage("Y");
                 string playerZ = GetStringDataFromMessage("Z");
 
-                ReturnMessage = "Player=" + playerName + " attacked at position (" + playerX + ',' + playerY + ',' + playerZ + ')';
+                ReturnMessage = "Player=" + playerName + " attacked (" + playerX + ',' + playerY + ',' + playerZ + ')';
             }
 
             this.PluginHost.BroadcastEvent(target: ReciverGroup.All,
