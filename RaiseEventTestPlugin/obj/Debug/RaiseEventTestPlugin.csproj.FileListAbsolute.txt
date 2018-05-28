@@ -29,3 +29,10 @@ C:\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Plugins\FirstPhotonPlugin\Ra
 C:\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Plugins\FirstPhotonPlugin\RaiseEventTestPlugin\obj\Debug\RaiseEventTestPlugin.pdb
 C:\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Plugins\FirstPhotonPlugin\0.1\bin\RaiseEventTestPlugin.dll
 C:\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\Plugins\FirstPhotonPlugin\0.1\bin\RaiseEventTestPlugin.pdb
+C:\Users\syong\OneDrive\School\Server Development\RaiseEventPluginAssignment\RaiseEventTestPlugin\obj\Debug\RaiseEventTestPlugin.csprojAssemblyReference.cache
+C:\Users\syong\OneDrive\School\Server Development\RaiseEventPluginAssignment\RaiseEventTestPlugin\obj\Debug\RaiseEventTestPlugin.csproj.CoreCompileInputs.cache
+C:\Users\syong\OneDrive\School\Server Development\RaiseEventPluginAssignment\0.1\bin\RaiseEventTestPlugin.dll
+C:\Users\syong\OneDrive\School\Server Development\RaiseEventPluginAssignment\0.1\bin\RaiseEventTestPlugin.pdb
+C:\Users\syong\OneDrive\School\Server Development\RaiseEventPluginAssignment\RaiseEventTestPlugin\obj\Debug\RaiseEventTestPlugin.csproj.CopyComplete
+C:\Users\syong\OneDrive\School\Server Development\RaiseEventPluginAssignment\RaiseEventTestPlugin\obj\Debug\RaiseEventTestPlugin.dll
+C:\Users\syong\OneDrive\School\Server Development\RaiseEventPluginAssignment\RaiseEventTestPlugin\obj\Debug\RaiseEventTestPlugin.pdb

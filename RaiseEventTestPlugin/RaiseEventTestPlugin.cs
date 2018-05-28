@@ -78,7 +78,7 @@ namespace TestPlugin
                         {
                             // Close Select Operation before start Update Operation
                             rdr.Close();
-                            string update_sql = "UPDATE users SET password = '" + playerPassword + "' WHERE name = '" + playerName + "'";
+                            string update_sql = "UPDATE photon.users SET password = '" + playerPassword + "' WHERE name = '" + playerName + "'";
                             cmd.CommandText = update_sql;
                             cmd.ExecuteNonQuery();
 
@@ -99,7 +99,7 @@ namespace TestPlugin
                 {
                     // Close Select Operation before start Insert Operation
                     rdr.Close();
-                    string insert_sql = "INSERT INTO users (name, password, date_created) VALUES ('" + playerName + "', '" + playerPassword + "', now())";
+                    string insert_sql = "INSERT INTO photon.users (name, password, date_created) VALUES ('" + playerName + "', '" + playerPassword + "', now())";
                     cmd.CommandText = insert_sql;
                     cmd.ExecuteNonQuery();
 
@@ -136,7 +136,7 @@ namespace TestPlugin
         public void ConnectToMySQL()
         {
             // Connect to MySQL
-            connStr = "server=localhost;user=root;database=photon;port=3306;password=Shihwei123";
+            connStr = "server=localhost;user=root;database=photon;port=3306;password=DM2341sidm";
             conn = new MySqlConnection(connStr);
             try
             {
