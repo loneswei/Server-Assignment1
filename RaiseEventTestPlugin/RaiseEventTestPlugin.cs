@@ -185,6 +185,20 @@ namespace TestPlugin
 
                 ReturnMessage = "Player=" + playerName + " attacked (" + playerX + ',' + playerY + ',' + playerZ + ')';
             }
+            else if (info.Request.EvCode == 5)
+            {
+                RecvdMessage = Encoding.Default.GetString((byte[])info.Request.Data);
+                string playerName = GetStringDataFromMessage("PlayerName");
+
+                if (RecvdMessage.Last() == '1')
+                {
+                    ReturnMessage = "Player " + playerName + " is currently DEFENDING";
+                }
+                else
+                {
+                    ReturnMessage = "Player " + playerName + " has STOPPED DEFENDING";
+                }
+            }
 
             this.PluginHost.BroadcastEvent(target: ReciverGroup.All,
                 senderActor: 0,
@@ -215,7 +229,7 @@ namespace TestPlugin
         public void ConnectToMySQL()
         {
             // Connect to MySQL
-            connStr = "server=localhost;user=root;database=photon;port=3306;password=Shihwei123";
+            connStr = "server=localhost;user=root;database=photon;port=3306;password=DM2341sidm";
             conn = new MySqlConnection(connStr);
             try
             {
