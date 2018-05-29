@@ -115,7 +115,7 @@ namespace TestPlugin
                 RecvdMessage = Encoding.Default.GetString((byte[])info.Request.Data);
                 string playerName = GetStringDataFromMessage("PlayerName");
 
-                string search_sql = "SELECT name, X, Y, Z FROM users WHERE name = '" + playerName + "'";
+                string search_sql = "SELECT name, PlayerX, PlayerY, PlayerZ, PetX, PetY, PetZ FROM users WHERE name = '" + playerName + "'";
                 MySqlCommand cmd = new MySqlCommand(search_sql, conn);
                 MySqlDataReader rdr = cmd.ExecuteReader();
 
@@ -124,10 +124,14 @@ namespace TestPlugin
                     while (rdr.Read())
                     {
                         // all x,y,z are not null, send the value from DB to client
-                        if (!DBNull.Value.Equals(rdr[1]) && !DBNull.Value.Equals(rdr[2]) && !DBNull.Value.Equals(rdr[3]))
+                        if (!DBNull.Value.Equals(rdr[1]) && !DBNull.Value.Equals(rdr[2]) && !DBNull.Value.Equals(rdr[3]) &&
+                            !DBNull.Value.Equals(rdr[4]) && !DBNull.Value.Equals(rdr[5]) && !DBNull.Value.Equals(rdr[6]))
                         {
-                            ReturnMessage = playerName + " - Result=NotNull, - X=" + rdr[1].ToString() +
-                                ", Y=" + rdr[2].ToString() + ", Z=" + rdr[3].ToString();
+                            ReturnMessage = playerName + " - Result=NotNull, - PlayerX=" + rdr[1].ToString() +
+                                ", PlayerY=" + rdr[2].ToString() + ", PlayerZ=" + rdr[3].ToString() +
+
+                                ", PetX=" + rdr[4].ToString() + ", PetY=" + rdr[5].ToString() +
+                                ", PetZ=" + rdr[6].ToString();
 
                             // Close Select Operation
                             rdr.Close();
@@ -156,11 +160,15 @@ namespace TestPlugin
             {
                 RecvdMessage = Encoding.Default.GetString((byte[])info.Request.Data);
                 string playerName = GetStringDataFromMessage("PlayerName");
-                string playerX = GetStringDataFromMessage("X");
-                string playerY = GetStringDataFromMessage("Y");
-                string playerZ = GetStringDataFromMessage("Z");
-                
-                string update_sql = "UPDATE users SET X = '" + playerX + "', Y = '" + playerY + "', Z = '" + playerZ + "' WHERE name = '" + playerName + "'";
+                string playerX = GetStringDataFromMessage("PlayerX");
+                string playerY = GetStringDataFromMessage("PlayerY");
+                string playerZ = GetStringDataFromMessage("PlayerZ");
+                string petX = GetStringDataFromMessage("PetX");
+                string petY = GetStringDataFromMessage("PetY");
+                string petZ = GetStringDataFromMessage("PetZ");
+
+                string update_sql = "UPDATE users SET PlayerX = '" + playerX + "', PlayerY = '" + playerY + "', PlayerZ = '" + playerZ
+                    + "', PetX = '" + petX + "', PetY = '" + petY + "', PetZ = '" + petZ + "' WHERE name = '" + playerName + "'";
                 MySqlCommand cmd = new MySqlCommand(update_sql, conn);
                 cmd.ExecuteNonQuery();
 
@@ -207,7 +215,7 @@ namespace TestPlugin
         public void ConnectToMySQL()
         {
             // Connect to MySQL
-            connStr = "server=localhost;user=root;database=photon;port=3306;password=DM2341sidm";
+            connStr = "server=localhost;user=root;database=photon;port=3306;password=Shihwei123";
             conn = new MySqlConnection(connStr);
             try
             {
