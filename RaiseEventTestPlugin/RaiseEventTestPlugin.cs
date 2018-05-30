@@ -69,7 +69,7 @@ namespace TestPlugin
                 string search_sql = "SELECT name, password FROM photon.users WHERE name = '" + playerName + "'";
                 MySqlCommand cmd = new MySqlCommand(search_sql, conn);
                 MySqlDataReader rdr = cmd.ExecuteReader();
-                
+
                 if (rdr.HasRows)
                 {
                     while (rdr.Read())
@@ -108,6 +108,8 @@ namespace TestPlugin
 
                     ReturnMessage = playerName + " - LoginResult=NewUser";
                 }
+
+                BroadcastEvent(info, ReturnMessage);
             }
             // Read position from DB
             else if (info.Request.EvCode == 2)
@@ -154,6 +156,8 @@ namespace TestPlugin
                     // Close Select Operation
                     rdr.Close();
                 }
+
+                BroadcastEvent(info, ReturnMessage);
             }
             // Update position in DB
             else if(info.Request.EvCode == 3)
@@ -173,8 +177,10 @@ namespace TestPlugin
                 cmd.ExecuteNonQuery();
 
                 ReturnMessage = playerName + " - Result=PositionUpdated";
-                
+
+                BroadcastEvent(info, ReturnMessage);
             }
+            //Receive & broadcast the attacking player's name and their position
             else if(info.Request.EvCode == 4)
             {
                 RecvdMessage = Encoding.Default.GetString((byte[])info.Request.Data);
@@ -184,7 +190,10 @@ namespace TestPlugin
                 string playerZ = GetStringDataFromMessage("Z");
 
                 ReturnMessage = "Player=" + playerName + " attacked (" + playerX + ',' + playerY + ',' + playerZ + ')';
+
+                BroadcastEvent(info, ReturnMessage);
             }
+            //Receive & broadcast which player is defending or has stoppped defending
             else if (info.Request.EvCode == 5)
             {
                 RecvdMessage = Encoding.Default.GetString((byte[])info.Request.Data);
@@ -198,14 +207,9 @@ namespace TestPlugin
                 {
                     ReturnMessage = "Player " + playerName + " has STOPPED DEFENDING";
                 }
-            }
 
-            this.PluginHost.BroadcastEvent(target: ReciverGroup.All,
-                senderActor: 0,
-                targetGroup: 0,
-                data: new Dictionary<byte, object>() { { (byte)245, ReturnMessage } },
-                evCode: info.Request.EvCode,
-                cacheOp: 0);
+                BroadcastEvent(info, ReturnMessage);
+            }
         }
 
         public string GetStringDataFromMessage(string dataTitle)
@@ -224,6 +228,18 @@ namespace TestPlugin
                 return this.RecvdMessage.Substring(index, index2 - index);
             }
             return null;
+        }
+
+        public void BroadcastEvent(IRaiseEventCallInfo info, string ReturnMessage)
+        {
+            this.PluginHost.BroadcastEvent(target: ReciverGroup.All, senderActor: 0, targetGroup: 0, data: new Dictionary<byte, object>()
+            {
+                {
+                        (byte)245, ReturnMessage
+                }
+            },
+     evCode: info.Request.EvCode,
+     cacheOp: 0);
         }
 
         public void ConnectToMySQL()

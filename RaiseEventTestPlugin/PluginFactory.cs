@@ -7,12 +7,12 @@ using Photon.Hive.Plugin;
 
 namespace TestPlugin
 {
-    class PluginFactory : IPluginFactory
+    public class PluginFactory : IPluginFactory
     {
-        public IGamePlugin Create(IPluginHost gameHost, string pluginName, Dictionary<string, string> config, out string errorMsg)
+        public IGamePlugin Create(IPluginHost gameHost, string pluginName,
+       Dictionary<string, string> config, out string errorMsg)
         {
             var plugin = new RaiseEventTestPlugin();
-
             if (plugin.SetupInstance(gameHost, config, out errorMsg))
             {
                 return plugin;
