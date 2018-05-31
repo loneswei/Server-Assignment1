@@ -245,7 +245,8 @@ namespace TestPlugin
         public void ConnectToMySQL()
         {
             // Connect to MySQL
-            connStr = "server=localhost;user=root;database=photon;port=3306;password=DM2341sidm";
+            //connStr = "server=localhost;user=root;database=photon;port=3306;password=DM2341sidm";
+            connStr = "server=localhost;user=root;database=photon;port=3306;password=Shihwei123";
             conn = new MySqlConnection(connStr);
             try
             {
