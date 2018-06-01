@@ -49,15 +49,6 @@ namespace TestPlugin
         public override void OnRaiseEvent(IRaiseEventCallInfo info)
         {
             string ReturnMessage = "";
-            try
-            {
-                base.OnRaiseEvent(info);
-            }
-            catch (Exception e)
-            {
-                this.PluginHost.BroadcastErrorInfoEvent(e.ToString(), info);
-                return;
-            }
 
             // Login System
             if (info.Request.EvCode == 1)
@@ -66,7 +57,7 @@ namespace TestPlugin
                 string playerName = GetStringDataFromMessage("PlayerName");
                 string playerPassword = GetStringDataFromMessage("Password");
 
-                string search_sql = "SELECT name, password FROM photon.users WHERE name = '" + playerName + "'";
+                string search_sql = "SELECT name, password FROM users WHERE name = '" + playerName + "'";
                 MySqlCommand cmd = new MySqlCommand(search_sql, conn);
                 MySqlDataReader rdr = cmd.ExecuteReader();
 
@@ -79,7 +70,7 @@ namespace TestPlugin
                         {
                             // Close Select Operation before start Update Operation
                             rdr.Close();
-                            string update_sql = "UPDATE photon.users SET password = '" + playerPassword + "' WHERE name = '" + playerName + "'";
+                            string update_sql = "UPDATE users SET password = '" + playerPassword + "' WHERE name = '" + playerName + "'";
                             cmd.CommandText = update_sql;
                             cmd.ExecuteNonQuery();
 
@@ -102,7 +93,7 @@ namespace TestPlugin
                 {
                     // Close Select Operation before start Insert Operation
                     rdr.Close();
-                    string insert_sql = "INSERT INTO photon.users (name, password, date_created) VALUES ('" + playerName + "', '" + playerPassword + "', now())";
+                    string insert_sql = "INSERT INTO users (name, password, date_created) VALUES ('" + playerName + "', '" + playerPassword + "', now())";
                     cmd.CommandText = insert_sql;
                     cmd.ExecuteNonQuery();
 
@@ -157,10 +148,13 @@ namespace TestPlugin
                     rdr.Close();
                 }
 
-                BroadcastEvent(info, ReturnMessage);
+                SendEvent(info, ReturnMessage, new List<int> { info.ActorNr });
+
+                // prevent raiseevent from being sent to all players
+                info.Cancel();
             }
             // Update position in DB
-            else if(info.Request.EvCode == 3)
+            else if (info.Request.EvCode == 3)
             {
                 RecvdMessage = Encoding.Default.GetString((byte[])info.Request.Data);
                 string playerName = GetStringDataFromMessage("PlayerName");
@@ -181,7 +175,7 @@ namespace TestPlugin
                 BroadcastEvent(info, ReturnMessage);
             }
             //Receive & broadcast the attacking player's name and their position
-            else if(info.Request.EvCode == 4)
+            else if (info.Request.EvCode == 4)
             {
                 RecvdMessage = Encoding.Default.GetString((byte[])info.Request.Data);
                 string playerName = GetStringDataFromMessage("PlayerName");
@@ -210,6 +204,8 @@ namespace TestPlugin
 
                 BroadcastEvent(info, ReturnMessage);
             }
+
+            info.Continue();
         }
 
         public string GetStringDataFromMessage(string dataTitle)
@@ -242,6 +238,17 @@ namespace TestPlugin
      cacheOp: 0);
         }
 
+        public void SendEvent(IRaiseEventCallInfo info, object ReturnMessage, List<int> targets)
+        {
+            this.PluginHost.BroadcastEvent(recieverActors: targets, senderActor: 0, evCode: info.Request.EvCode, data: new Dictionary<byte, object>()
+            {
+                {
+                        (byte)245, ReturnMessage
+                }
+            },
+     cacheOp: 0);
+        }
+
         public void ConnectToMySQL()
         {
             // Connect to MySQL
@@ -252,7 +259,7 @@ namespace TestPlugin
             {
                 conn.Open();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
             }
